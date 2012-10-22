@@ -55,7 +55,7 @@ public class CPUSettings extends Fragment implements SeekBar.OnSeekBarChangeList
     private SeekBar mMaxSlider;
     private SeekBar mMinSlider;
     private Spinner mGovernor;
-    private Spinner mIo;
+    //private Spinner mIo;
     private Switch mSetOnBoot;
     private TextView mCurFreq;
     private TextView mMaxSpeedText;
@@ -97,7 +97,7 @@ public class CPUSettings extends Fragment implements SeekBar.OnSeekBarChangeList
         int frequenciesNum = availableFrequencies.length - 1;
 
         String currentGovernor = Helpers.readOneLine(GOVERNOR);
-        String currentIo = Helpers.getIOScheduler();
+        //String currentIo = Helpers.getIOScheduler();
         String curMaxSpeed = Helpers.readOneLine(MAX_FREQ);
         String curMinSpeed = Helpers.readOneLine(MIN_FREQ);
 
@@ -158,7 +158,7 @@ public class CPUSettings extends Fragment implements SeekBar.OnSeekBarChangeList
         mGovernor.setSelection(Arrays.asList(availableGovernors).indexOf(currentGovernor));
         mGovernor.setOnItemSelectedListener(new GovListener());
 
-        mIo = (Spinner) view.findViewById(R.id.io);
+        /*mIo = (Spinner) view.findViewById(R.id.io);
         String[] availableIo = Helpers.getAvailableIOSchedulers();
         ArrayAdapter<CharSequence> ioAdapter = new ArrayAdapter<CharSequence> (mActivity,
                 android.R.layout.simple_spinner_item);
@@ -168,7 +168,7 @@ public class CPUSettings extends Fragment implements SeekBar.OnSeekBarChangeList
         }
         mIo.setAdapter(ioAdapter);
         mIo.setSelection(Arrays.asList(availableIo).indexOf(currentIo));
-        mIo.setOnItemSelectedListener(new IOListener());
+        mIo.setOnItemSelectedListener(new IOListener());*/
 
         mSetOnBoot = (Switch) view.findViewById(R.id.set_on_boot);
         mSetOnBoot.setChecked(preferences.getBoolean(SOB, false));
@@ -238,7 +238,7 @@ public class CPUSettings extends Fragment implements SeekBar.OnSeekBarChangeList
         }
     }
 
-    public class IOListener implements OnItemSelectedListener {
+    /*public class IOListener implements OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             String selected = parent.getItemAtPosition(pos).toString();
             CMDProcessor cmd = new CMDProcessor();
@@ -251,7 +251,7 @@ public class CPUSettings extends Fragment implements SeekBar.OnSeekBarChangeList
         public void onNothingSelected(AdapterView parent) {
             // Do nothing.
         }
-    }
+    }*/
 
     @Override
     public void onResume() {
